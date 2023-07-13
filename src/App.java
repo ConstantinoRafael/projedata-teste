@@ -1,4 +1,6 @@
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class App {
         for (Funcionario funcionario : funcionarios) {
             System.out.println("Nome: " + funcionario.getNome());
             System.out.println("Data de Nascimento: " + funcionario.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-            System.out.println("Salário: " + funcionario.getSalario());
+            System.out.println("Salário: " + formatarValor(funcionario.getSalario()));
             System.out.println("Função: " + funcionario.getFuncao());
             System.out.println();
         }
@@ -58,9 +60,18 @@ public class App {
             for (Funcionario funcionario : funcionariosDaFuncao) {
                 System.out.println("Nome: " + funcionario.getNome());
                 System.out.println("Data de Nascimento: " + funcionario.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                System.out.println("Salário: " + funcionario.getSalario());
+                System.out.println("Salário: " + formatarValor(funcionario.getSalario()));
                 System.out.println();
             }
         }
+    }
+
+    // Função para formatar o valor do solário
+    private static String formatarValor(BigDecimal valor) {
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+        symbols.setDecimalSeparator(',');
+        symbols.setGroupingSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", symbols);
+        return decimalFormat.format(valor);
     }
 }
