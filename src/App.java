@@ -1,4 +1,5 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
@@ -108,6 +109,16 @@ public class App {
             totalSalarios = totalSalarios.add(funcionario.getSalario());
         }
         System.out.println("Total dos salários dos funcionários: " + formatarValor(totalSalarios));
+
+        // Calcular quantos salários mínimos ganha cada funcionário (considerando salário mínimo de R$1212.00)
+        BigDecimal salarioMinimo = new BigDecimal("1212.00");
+        System.out.println("Salários mínimos ganhos por cada funcionário:");
+        for (Funcionario funcionario : funcionarios) {
+            BigDecimal salariosMinimos = funcionario.getSalario().divide(salarioMinimo, 2, RoundingMode.DOWN);
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("Salários mínimos: " + formatarValor(salariosMinimos));
+            System.out.println();
+        }
  
     }
 
