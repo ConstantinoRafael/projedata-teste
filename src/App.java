@@ -33,5 +33,10 @@ public class App {
             System.out.println();
         }
 
+        // Aumenta o salário de todos os funcionários em 10%
+        for (Funcionario funcionario : funcionarios) {
+            BigDecimal novoSalario = funcionario.getSalario().multiply(new BigDecimal("1.10"));
+            funcionario.setSalario(novoSalario);
+        }
     }
 }
