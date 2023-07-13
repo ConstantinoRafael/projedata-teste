@@ -75,6 +75,18 @@ public class App {
                 System.out.println();
             }
         }
+
+        // Encontrar o funcionário com a maior idade
+        Funcionario funcionarioMaisVelho = funcionarios.get(0);
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getDataNascimento().isBefore(funcionarioMaisVelho.getDataNascimento())) {
+                 funcionarioMaisVelho = funcionario;
+            }
+        }
+        System.out.println("Funcionário com a maior idade:");
+        System.out.println("Nome: " + funcionarioMaisVelho.getNome());
+        System.out.println("Idade: " + calcularIdade(funcionarioMaisVelho.getDataNascimento()));
+        System.out.println();
     }
 
     // Função para formatar o valor do solário
@@ -84,5 +96,11 @@ public class App {
         symbols.setGroupingSeparator('.');
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.00", symbols);
         return decimalFormat.format(valor);
+    }
+
+    // Função para calcular a idade
+    private static int calcularIdade(LocalDate dataNascimento) {
+        LocalDate dataAtual = LocalDate.now();
+        return dataAtual.minusYears(dataNascimento.getYear()).getYear();
     }
 }
