@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,16 @@ public class App {
 
         // Remover o funcionário João da lista
         funcionarios.removeIf(funcionario -> funcionario.getNome().equals("João"));
+
+        // Imprimir todos os funcionários, 
+        System.out.println("Lista de funcionários:");
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("Data de Nascimento: " + funcionario.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            System.out.println("Salário: " + funcionario.getSalario());
+            System.out.println("Função: " + funcionario.getFuncao());
+            System.out.println();
+        }
 
     }
 }
