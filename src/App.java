@@ -2,7 +2,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -37,6 +39,14 @@ public class App {
         for (Funcionario funcionario : funcionarios) {
             BigDecimal novoSalario = funcionario.getSalario().multiply(new BigDecimal("1.10"));
             funcionario.setSalario(novoSalario);
+        }
+
+        // Agrupar funcionários por função
+        Map<String, List<Funcionario>> funcionariosPorFuncao = new HashMap<>();
+        for (Funcionario funcionario : funcionarios) {
+            String funcao = funcionario.getFuncao();
+            funcionariosPorFuncao.putIfAbsent(funcao, new ArrayList<>());
+            funcionariosPorFuncao.get(funcao).add(funcionario);
         }
     }
 }
