@@ -4,6 +4,7 @@ import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,19 @@ public class App {
         System.out.println("Nome: " + funcionarioMaisVelho.getNome());
         System.out.println("Idade: " + calcularIdade(funcionarioMaisVelho.getDataNascimento()));
         System.out.println();
+
+        // Ordenar a lista de funcionários por ordem alfabética
+        funcionarios.sort(Comparator.comparing(Funcionario::getNome));
+
+        // Imprimir a lista de funcionários por ordem alfabética
+        System.out.println("Lista de funcionários em ordem alfabética:");
+        for (Funcionario funcionario : funcionarios) {
+            System.out.println("Nome: " + funcionario.getNome());
+            System.out.println("Data de Nascimento: " + funcionario.getDataNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            System.out.println("Salário: " + formatarValor(funcionario.getSalario()));
+            System.out.println("Função: " + funcionario.getFuncao());
+            System.out.println();
+        }
     }
 
     // Função para formatar o valor do solário
