@@ -101,6 +101,14 @@ public class App {
             System.out.println("Função: " + funcionario.getFuncao());
             System.out.println();
         }
+
+        // Calcular o total dos salários dos funcionários
+        BigDecimal totalSalarios = BigDecimal.ZERO;
+        for (Funcionario funcionario : funcionarios) {
+            totalSalarios = totalSalarios.add(funcionario.getSalario());
+        }
+        System.out.println("Total dos salários dos funcionários: " + formatarValor(totalSalarios));
+ 
     }
 
     // Função para formatar o valor do solário
